@@ -3,16 +3,36 @@ $(() => {
   // this variable represents a jQ OBJECT that contains the main content div with the ID all-Contents.
   // This div will be used to hold all the content of the page.
 
-  const $tweetsDiv = $('<div class="tweets"></div>');
+  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({
+    padding: '10px',
+    width: '50%',
+    backgroundColor: 'powderblue'
+    });
+
+const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
+    padding: '10px',
+    width: '50%',
+    backgroundColor: 'powderblue'
+    });
+$page.append($sideBar);
+
+const $friendsOfDiv = $('<div class="friends"></div>').css({
+  padding: '10px',
+  width: '25%',
+  backgroundColor: 'lavender'
+});
+
+$sideBar.append($friendsOfDiv);
+
   // this variable represents a JQ object that contains a div with the class tweets. This div will be used to hold
   //all of the tweet elements.
+//I want to make this look different, I thinK I can do that by just adding the css to the actual creation
 
 //BARE MINIMUM REQUIREMENTS:
 
 //A
 //Show the new user tweets somehow. You can show them automatically as they are created every 10 seconds, or create a button
-//that displays new tweets.
-// The button should have an id of new-tweets-button. New Tweets should be added to the top of the 
+//that displays new tweets: The button should have an id of new-tweets-button. New Tweets should be added to the top of the 
 //list of tweets. 
 // All tweets in the streams.home array should be displayed. There is a container div that has the class tweets
 //that you can append the tweets to. Each tweet should hav ethe class tweet and should be appended to the tweets container.
@@ -56,7 +76,7 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
       const $tweet = $('<div class="tweet"></div>');
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp with moment???
+      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp COME BACK with moment???
       const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp 
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
