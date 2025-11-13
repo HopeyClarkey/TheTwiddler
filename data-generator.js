@@ -1,5 +1,15 @@
 /*
  * NOTE: This file generates fake tweet data, and is not intended to be part of your implementation.
+
+~~~MY NOTES:
+  this file creates two GLOBAL Variables:  users and streams
+    users = an array of strings, all the usernames you are following
+    streams = an OBJECT with TWO PROPERTIES-
+          streams.home = an array of ALL the Tweets from ALL the users you are following
+          streams.users = an OBJECT with PROPERTIES for each user. streams.user.*username* has all of *username*'s tweets
+
+  this file also KICKS OFF a periodic process that puts more data in streams.
+
  * You can safely leave this file untouched, and confine your changes to index.js.
  */
 
