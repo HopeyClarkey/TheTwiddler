@@ -11,8 +11,10 @@ $(() => {
 
 //A
 //Show the new user tweets somehow. You can show them automatically as they are created every 10 seconds, or create a button
-//that displays new tweets. The button should have an id of new-tweets-button. New Tweets should be added to the top of the 
-//list of tweets. All tweets in the streams.home array should be displayed. There is a container div that has the class tweets
+//that displays new tweets.
+// The button should have an id of new-tweets-button. New Tweets should be added to the top of the 
+//list of tweets. 
+// All tweets in the streams.home array should be displayed. There is a container div that has the class tweets
 //that you can append the tweets to. Each tweet should hav ethe class tweet and should be appended to the tweets container.
 
 //B
@@ -54,7 +56,7 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
       const $tweet = $('<div class="tweet"></div>');
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp
+      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp with moment???
       const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp 
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
@@ -64,6 +66,11 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
   }
 
 showTweets(streams.home); //calls the function we just made.
+
+//hook up the button to the function we just made:
+$newTweetsButton.on('click', ()=>{ //on the click, 
+  showTweets(streams.home); //refresh the tweets
+})
 
 // put the add tweet to page logic into a function
 function addNewTweets(){
@@ -81,7 +88,6 @@ function addNewTweets(){
   $tweetsDiv.append($tweets);
   }
 
-  //look up .html method will help remove elements
 });
 
 
