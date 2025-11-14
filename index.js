@@ -9,7 +9,7 @@ $(() => {
     backgroundColor: 'powderblue'
     });
 
-const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
     padding: '10px',
     width: '50%',
     backgroundColor: 'powderblue'
