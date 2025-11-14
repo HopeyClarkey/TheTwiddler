@@ -62,13 +62,11 @@ $(() => {
   // the tweet in the $writeNewTweet div
 
 //code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
-  const $tweetDat =  $() // okay so what happens here- on tweet submit click, the text in the input box needs 
-  // to go into the tweetlist, in the same formatting.
-  /* 
-  
-  pulling the info from the show new tweets button. Will need to make a new function that pulls everything in exactly 
-  the same format. Which means when I update the moment so that it displays correctly I will need to update it here too.
-  $newTweetsButton.on('click', ()=>{ //on the click, 
+  const $tweetDat =  $( /* okay so what happens here- on tweet submit click, the text in the input box needs
+  to go into the tweetlist, in the same formatting. pulling the info from the show new tweets button. Will
+  need to make a new function that pulls everything in exactly the same format. Which means when I update 
+  the moment so that it displays correctly I will need to update it here too.
+  $newTweetsButton.on('click', ()=>{ //on the click,
   showTweets(streams.home); //refresh the tweets
 })
   const $tweet = $('<div class="tweet"></div>');
@@ -80,8 +78,10 @@ $(() => {
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
     $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp)
-   */
+   */)
   //$tweetsList.prepend($tweetDat)
+
+
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
     padding: '10px',
     margin: '10px',
