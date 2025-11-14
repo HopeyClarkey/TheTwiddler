@@ -144,7 +144,7 @@ $tweetsDiv.prepend($newTweetsButton);
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
     $tweet.append($user, $message, $timeStamp); //appends the user, the message, and the time stamp to the tweet
-    $tweetsList.append($tweet); //appends the tweet to the tweetDiv
+    $tweetsList.prepend($tweet); //appends the tweet to the tweetDiv
   });
   }
 
