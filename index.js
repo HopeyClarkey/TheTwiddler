@@ -172,6 +172,8 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
 $tweetsDiv.css({position: 'relative'});
 $tweetsDiv.prepend($newTweetsButton);
 
+
+
   function showTweets(tweetArray){
     $tweetsList.html('')//removes old tweets
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
