@@ -52,7 +52,8 @@ $(() => {
     fontSize: '22px', //size
     cursor: 'pointer' // this changes it to a pointer
   });
-  $writeNewTweet.append($tweetText, $tweetSubmit)
+  $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit 
+  // the tweet in the $writeNewTweet div
 
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
