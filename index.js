@@ -43,6 +43,9 @@ $(() => {
     flex: '1', //this means it will resize with the $writeNewText div
     padding: '10px', //padding
     fontSize: '22px', //size
+    backgroundColor: 'lavender', //this is the background color
+    borderRadius: '8px', //this rounds my corners!
+    border: ' 2px solid lightpink', //adding barbie vibes
     cursor: 'text' //this changes it to the text input!
   });
 
@@ -50,6 +53,9 @@ $(() => {
   const $tweetSubmit = $('<button type= "submit">Tweet</button>').css({
     padding: '10px', //padding
     fontSize: '22px', //size
+    backgroundColor: 'lightpink', //this is the background color
+    borderRadius: '8px', //this rounds my corners!
+    border: ' 2px solid lavender', //adding barbie vibes
     cursor: 'pointer' // this changes it to a pointer
   });
   $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit 
@@ -163,9 +169,13 @@ $(() => {
 
 
 //create new tweets button
-const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({
-  position: 'absolute',
-  top: '5px',
+const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({ 
+  //okay so this creates the $jQ that creates the new button
+  position: 'absolute', //this means it wont move around the page
+  top: '10px', //just a little room around it.
+  backgroundColor: 'powderblue', //malibu blue
+  borderRadius: '8px', //round corners
+  border: ' 2px solid lavender', //tie together
   right: '5px',
   zIndex: 10
 });
@@ -181,7 +191,7 @@ $tweetsDiv.prepend($newTweetsButton);
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
       const createdAt = tweet.created_at; //creates a variable that would represent the time stamp COME BACK with moment???
       const momentTimeAgo = moment(createdAt).fromNow(); //fighting with moment
-      const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp 
+      const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp
       const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp">${momentTimeAgo}</span>`);
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
