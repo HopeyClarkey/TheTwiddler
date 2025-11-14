@@ -22,20 +22,6 @@ $(() => {
   $header.text('Twiddler!'); //fill header with words
   $page.prepend($header); //add header to the TOP of the page with Prepend
 
-  const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
-    padding: '10px',  //more padding
-    marginTop: '10px', //more space
-    backgroundColor: 'powderblue', //malibu blue
-    borderRadius: '8px', //round corners
-    border: ' 2px solid lavender', //tie together
-    width: 'calc(100%-320px)', //fullwidth minus sidebar plus margin of 60?
-    boxSizing: 'border-box', //okay I learned this when I was having trouble with the sidebar covering up the edges
-    display: 'flex', //this creates a dynamic display of the div
-    marginRight: '270px', //space for my sidebar
-    alignItems: 'right' //I want the text input boxes to show up on the right of this main box
-  })
-  $page.append($writeNewTweet); //adding the new tweet div to the page, under the header.
-
   const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the friends and the hashtags eventually
     position: 'fixed', //I want this sidebar to stay on the right
     marginLeft: '10px',
@@ -48,6 +34,33 @@ $(() => {
     overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter what else is on the page.
     backgroundColor: 'powderblue'
   });
+
+    const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
+    padding: '10px',  //more padding
+    marginTop: '10px', //more space
+    backgroundColor: 'powderblue', //malibu blue
+    borderRadius: '8px', //round corners
+    border: ' 2px solid lavender', //tie together
+    height: '150px',
+    width: 'calc(100% - 320px)', //fullwidth minus sidebar plus margin of 60?
+    boxSizing: 'border-box', //okay I learned this when I was having trouble with the sidebar covering up the edges
+    display: 'flex', //this creates a dynamic display of the div
+    alignItems: 'flex-end' //I want the text input boxes to show up on the right of this main box
+  })
+
+  const $tweetText = $('<input type = "text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({
+    flex: '1',
+    padding: '8px',
+    fontSize: '14px'
+  });
+
+  const $tweetSubmit = $('<button type= "submit">Tweet</button>').css({
+    padding :  '8px',
+    fontSize: '14px',
+    cursor: 'pointer'
+  });
+  $writeNewTweet.append($tweetText, $tweetSubmit)
+
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
     padding: '10px',
@@ -64,11 +77,12 @@ $(() => {
   // Added this so I can just go ahead and delete the tweets and not the object itself.
     paddingTop: '20px' //I liked the way this looked best
   });
+
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
 
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
-    width: 'calc(100%-320px)', //fullwidth minus sidebar plus margin of 60?
+    width: '250px)', //fullwidth minus sidebar plus margin of 60?
     boxSizing: 'border-box',
     marginRight: '15px',
     marginLeft: '15px',
@@ -81,7 +95,7 @@ $(() => {
     display: 'flex',
   });
 
-  $contentContainer.append($tweetsDiv, $sideBar);
+  $contentContainer.append($writeNewTweet,$tweetsDiv, $sideBar);
   $page.append($contentContainer);
 
   // this variable represents a JQ object that contains a div with the class tweets. This div will be used to hold
@@ -168,7 +182,7 @@ function addNewTweets(){
     return $tweet;
   });
 
-  $tweetsDiv.append($tweets);
+  $tweetsDiv.prepend($tweets);
   }
 
 });
