@@ -18,24 +18,14 @@ $(() => {
     marginBottom: '10px', //this gives us space between other obejcts and the header
     marginRight: '270px', //my sidebar is 50 pixles, so this gives me a little room here.
 
-  }); //create header
+  });
   $header.text('Twiddler!'); //fill header with words
   $page.prepend($header); //add header to the TOP of the page with Prepend
 
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the friends and the hashtags eventually
-    position: 'fixed', //I want this sidebar to stay on the right
-    marginLeft: '10px',
-    padding: '10px',
-    right: '0',
-    top: '0',
-    height: '100vh',  //this is veiwheight, so the entire screen
-    width: '250px', //define size
-    border: ' 2px solid lavender', // tie my design
-    overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter what else is on the page.
-    backgroundColor: 'powderblue'
-  });
 
-    const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
+//Write New Tweets button comes next, just creating the section for it:
+
+  const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
     padding: '10px',  //more padding
     marginTop: '10px', //more space
     backgroundColor: 'powderblue', //malibu blue
@@ -48,16 +38,19 @@ $(() => {
     alignItems: 'stretch' //I want the text input boxes to show up on the right of this main box
   })
 
+//create input text box
   const $tweetText = $('<input type = "text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({ //input text for tweets
-    flex: '1',
-    padding: '8px',
-    fontSize: '14px'
+    flex: '1', //this means it will resize with the $writeNewText div
+    padding: '10px', //padding
+    fontSize: '22px', //size
+    cursor: 'text' //this changes it to the text input!
   });
 
+  //create input button
   const $tweetSubmit = $('<button type= "submit">Tweet</button>').css({
-    padding :  '8px',
-    fontSize: '14px',
-    cursor: 'pointer'
+    padding: '10px', //padding
+    fontSize: '22px', //size
+    cursor: 'pointer' // this changes it to a pointer
   });
   $writeNewTweet.append($tweetText, $tweetSubmit)
 
@@ -79,6 +72,18 @@ $(() => {
   });
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
 
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the friends and the hashtags eventually
+    position: 'fixed', //I want this sidebar to stay on the right
+    marginLeft: '10px',
+    padding: '10px',
+    right: '0',
+    top: '0',
+    height: '100vh',  //this is veiwheight, so the entire screen
+    width: '250px', //define size
+    border: ' 2px solid lavender', // tie my design
+    overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter what else is on the page.
+    backgroundColor: 'powderblue'
+  });
 
 
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
@@ -177,6 +182,9 @@ $tweetsDiv.prepend($newTweetsButton);
   }
 
 showTweets(streams.home); //calls the function we just made.
+
+
+
 
 //hook up the button to the function we just made:
 $newTweetsButton.on('click', ()=>{ //on the click, 
