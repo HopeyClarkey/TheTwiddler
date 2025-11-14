@@ -55,6 +55,8 @@ $(() => {
   $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit 
   // the tweet in the $writeNewTweet div
 
+//code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
+
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
     padding: '10px',
