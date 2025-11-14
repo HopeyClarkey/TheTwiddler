@@ -41,14 +41,14 @@ $(() => {
     backgroundColor: 'powderblue', //malibu blue
     borderRadius: '8px', //round corners
     border: ' 2px solid lavender', //tie together
-    height: '150px',
-    width: 'calc(100% - 320px)', //fullwidth minus sidebar plus margin of 60?
+    height: '100px',
+    width: 'calc(100% - 270px)', //fullwidth minus sidebar plus margin of 60?
     boxSizing: 'border-box', //okay I learned this when I was having trouble with the sidebar covering up the edges
-    display: 'flex', //this creates a dynamic display of the div
-    alignItems: 'flex-end' //I want the text input boxes to show up on the right of this main box
+    display: 'flex', //this creates a dynamic display of the div that will resize!
+    alignItems: 'stretch' //I want the text input boxes to show up on the right of this main box
   })
 
-  const $tweetText = $('<input type = "text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({
+  const $tweetText = $('<input type = "text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({ //input text for tweets
     flex: '1',
     padding: '8px',
     fontSize: '14px'
@@ -77,8 +77,9 @@ $(() => {
   // Added this so I can just go ahead and delete the tweets and not the object itself.
     paddingTop: '20px' //I liked the way this looked best
   });
-
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
+
+
 
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
@@ -90,13 +91,26 @@ $(() => {
     backgroundColor: 'lavender'
   });
   $sideBar.append($friendsOfDiv); //put that in the sidebar!
+  
+  const $hashTags = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
+    padding: '10px',
+    width: '250px)', //fullwidth minus sidebar plus margin of 60?
+    boxSizing: 'border-box',
+    marginRight: '15px',
+    marginLeft: '15px',
+    marginTop: '15px',
+    backgroundColor: 'lavender'
+  });
+  $sideBar.append($hashTags); //put that in the sidebar!
+
 
   const $contentContainer = $('<div id = "content-container"></div>').css({ // this overall holds my sidebar on one side, and my tweets div and sidebar, inside the page
     display: 'flex',
   });
 
-  $contentContainer.append($writeNewTweet,$tweetsDiv, $sideBar);
-  $page.append($contentContainer);
+  $contentContainer.append($tweetsDiv, $sideBar);
+  $page.append($writeNewTweet);
+  $page.append($contentContainer)
 
   // this variable represents a JQ object that contains a div with the class tweets. This div will be used to hold
   //all of the tweet elements.
