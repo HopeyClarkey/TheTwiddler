@@ -2,36 +2,83 @@ $(() => {
   const $page = $('#all-contents');
   // this variable represents a jQ OBJECT that contains the main content div with the ID all-Contents.
   // This div will be used to hold all the content of the page.
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
-    position: 'fixed',
+
+
+
+  //create header
+   const $header = $('<header></header>').css({ // okay so this creates a header for my page
+    padding: '10px', // it's got a padding of 10px inside the header div
+    textAlign: 'center', //all the text in here is going to align to center
+    fontSize: '60px', //fontsize is specified,
+    fontWeight: 'bold', //can bold here
+    height: '100px', //how tall is my header?
+    backgroundColor: 'lavender', //this is the background color
+    borderRadius: '8px', //this rounds my corners!
+    border: ' 2px solid lightpink', //adding barbie vibes
+    marginBottom: '10px', //this gives us space between other obejcts and the header
+    marginRight: '270px', //my sidebar is 50 pixles, so this gives me a little room here.
+
+  }); //create header
+  $header.text('Twiddler!'); //fill header with words
+  $page.prepend($header); //add header to the TOP of the page with Prepend
+
+  const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
+    padding: '10px',  //more padding
+    marginTop: '10px', //more space
+    backgroundColor: 'powderblue', //malibu blue
+    borderRadius: '8px', //round corners
+    border: ' 2px solid lavender', //tie together
+    width: 'calc(100%-320px)', //fullwidth minus sidebar plus margin of 60?
+    boxSizing: 'border-box', //okay I learned this when I was having trouble with the sidebar covering up the edges
+    display: 'flex', //this creates a dynamic display of the div
+    marginRight: '270px', //space for my sidebar
+    alignItems: 'right' //I want the text input boxes to show up on the right of this main box
+  })
+  $page.append($writeNewTweet); //adding the new tweet div to the page, under the header.
+
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the friends and the hashtags eventually
+    position: 'fixed', //I want this sidebar to stay on the right
+    marginLeft: '10px',
+    padding: '10px',
     right: '0',
     top: '0',
-    height: '100vh',
-    width: '260px',
-    overflowY: 'auto',
+    height: '100vh',  //this is veiwheight, so the entire screen
+    width: '250px', //define size
+    border: ' 2px solid lavender', // tie my design
+    overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter what else is on the page.
     backgroundColor: 'powderblue'
   });
 
-  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({
+  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
     padding: '10px',
+    marginLeft: '50px',
+    marginTop: '10px',
     marginRight: '270px',
+    borderRadius: '8px',
+    border: ' 2px solid powderblue',
     width: '75%',
     backgroundColor: 'lightpink'
   });
 
-  const $friendsOfDiv = $('<div class="friends"></div>').css({
+  const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of just the tweets when I needed new ones.
+  // Added this so I can just go ahead and delete the tweets and not the object itself.
+    paddingTop: '20px' //I liked the way this looked best
+  });
+  $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
+
+  const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
+    width: 'calc(100%-320px)', //fullwidth minus sidebar plus margin of 60?
+    boxSizing: 'border-box',
     marginRight: '15px',
     marginLeft: '15px',
     marginTop: '15px',
-    width: '25%',
     backgroundColor: 'lavender'
   });
-  $sideBar.append($friendsOfDiv);
+  $sideBar.append($friendsOfDiv); //put that in the sidebar!
 
-  const $contentContainer = $('<div id = "content-container"></div>').css({
+  const $contentContainer = $('<div id = "content-container"></div>').css({ // this overall holds my sidebar on one side, and my tweets div and sidebar, inside the page
     display: 'flex',
-    gap: '10px'
   });
 
   $contentContainer.append($tweetsDiv, $sideBar);
@@ -75,17 +122,20 @@ $(() => {
 
 
 
-//create header
- const $header = $('<header><title>Twiddler!</title></header>'); //create header
-  $page.prepend($header); //add header to page
+
 
 //create new tweets button
-const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>');
-  $page.prepend($newTweetsButton);
-  $page.append($tweetsDiv)
+const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({
+  position: 'absolute',
+  top: '5px',
+  right: '5px',
+  zIndex: 10
+});
+$tweetsDiv.css({position: 'relative'});
+$tweetsDiv.prepend($newTweetsButton);
 
   function showTweets(tweetArray){
-    $tweetsDiv.html('')//removes old tweets
+    $tweetsList.html('')//removes old tweets
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
       const $tweet = $('<div class="tweet"></div>');
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
@@ -94,7 +144,7 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
     $tweet.append($user, $message, $timeStamp); //appends the user, the message, and the time stamp to the tweet
-    $tweetsDiv.append($tweet); //appends the tweet to the tweetDiv
+    $tweetsList.append($tweet); //appends the tweet to the tweetDiv
   });
   }
 
