@@ -69,22 +69,24 @@ $(() => {
     backgroundColor: 'lightpink'
   });
 
-  const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of just the tweets when I needed new ones.
-  // Added this so I can just go ahead and delete the tweets and not the object itself.
+  const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of 
+  // just the tweets when I needed new ones. Added this so I can just go ahead and delete the tweets and not the object itself.
     paddingTop: '20px' //I liked the way this looked best
   });
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
 
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the friends and the hashtags eventually
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the
+  // friends and the hashtags eventually? recent tweets, etc.
     position: 'fixed', //I want this sidebar to stay on the right
     marginLeft: '10px',
     padding: '10px',
     right: '0',
     top: '0',
-    height: '100vh',  //this is veiwheight, so the entire screen
+    height: '100vh',  //this is viewheight, so the entire screen
     width: '250px', //define size
     border: ' 2px solid lavender', // tie my design
-    overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter what else is on the page.
+    overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter
+    // what else is on the page.
     backgroundColor: 'powderblue'
   });
 
@@ -176,16 +178,18 @@ $tweetsDiv.prepend($newTweetsButton);
       const $tweet = $('<div class="tweet"></div>');
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
       const createdAt = tweet.created_at; //creates a variable that would represent the time stamp COME BACK with moment???
+      const momentTimeAgo = moment(createdAt).fromNow(); //fighting with moment
       const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp 
+      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp">${momentTimeAgo}</span>`);
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
-    $tweet.append($user, $message, $timeStamp); //appends the user, the message, and the time stamp to the tweet
+    $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp); //appends the user, the message, and the time stamp to the tweet
     $tweetsList.prepend($tweet); //appends the tweet to the tweetDiv
+
   });
   }
 
 showTweets(streams.home); //calls the function we just made.
-
 
 
 
