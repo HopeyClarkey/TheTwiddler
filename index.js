@@ -62,24 +62,22 @@ $(() => {
   // the tweet in the $writeNewTweet div
 
 //code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
-  const $tweetDat =  $( /* okay so what happens here- on tweet submit click, the text in the input box needs
+   /* okay so what happens here- on tweet submit click, the text in the input box needs
   to go into the tweetlist, in the same formatting. pulling the info from the show new tweets button. Will
-  need to make a new function that pulls everything in exactly the same format. Which means when I update 
-  the moment so that it displays correctly I will need to update it here too.
-  $newTweetsButton.on('click', ()=>{ //on the click,
-  showTweets(streams.home); //refresh the tweets
-})
-  const $tweet = $('<div class="tweet"></div>');
-      const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp COME BACK with moment???
-      const momentTimeAgo = moment(createdAt).fromNow(); //fighting with moment
-      const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp
-      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp">${momentTimeAgo}</span>`);
-      const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
-
-    $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp)
-   */)
-  //$tweetsList.prepend($tweetDat)
+  need to make a new function that pulls everything in exactly the same format. Which means when I update
+  the moment so that it displays correctly I will need to update it here too.*/
+  $tweetSubmit.on('click', () => { //on the click,
+      const $myTweet = $('<div class="tweet"></div>'); //create $MyTweet
+      const $myUser = $(`<span class="username">@${'me'}</span>`); //creates a user for ech tweet, with the class username @ template
+      const myCreatedAt = $myTweet.created_at; //creates a variable that would represent the time stamp
+      const myMomentTimeAgo = moment(myCreatedAt).fromNow(); //fighting with moment will come back to this after solve
+      const $myTimeStamp = $(`<span class="timestamp">${myCreatedAt.toString()}</span>`); //creates timestamp
+      const $myHumanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp">${myMomentTimeAgo}</span>`); //creates humanfriendly time stamp
+      const $myMessage = $(`<span class="message">:${$myTweet.$myMessage}</span>`); //creates message itself.
+    $myTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTimeStamp)
+    $tweetsList.prepend($myTweet);
+  }
+);
 
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
