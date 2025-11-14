@@ -2,27 +2,40 @@ $(() => {
   const $page = $('#all-contents');
   // this variable represents a jQ OBJECT that contains the main content div with the ID all-Contents.
   // This div will be used to hold all the content of the page.
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
+    position: 'fixed',
+    right: '0',
+    top: '0',
+    height: '100vh',
+    width: '260px',
+    overflowY: 'auto',
+    backgroundColor: 'powderblue'
+  });
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({
     padding: '10px',
-    width: '50%',
-    backgroundColor: 'powderblue'
-    });
+    marginRight: '270px',
+    width: '75%',
+    backgroundColor: 'lightpink'
+  });
 
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({
+  const $friendsOfDiv = $('<div class="friends"></div>').css({
     padding: '10px',
-    width: '50%',
-    backgroundColor: 'powderblue'
-    });
-$page.append($sideBar);
+    marginRight: '15px',
+    marginLeft: '15px',
+    marginTop: '15px',
+    width: '25%',
+    backgroundColor: 'lavender'
+  });
+  $sideBar.append($friendsOfDiv);
 
-const $friendsOfDiv = $('<div class="friends"></div>').css({
-  padding: '10px',
-  width: '25%',
-  backgroundColor: 'lavender'
-});
+  const $contentContainer = $('<div id = "content-container"></div>').css({
+    display: 'flex',
+    gap: '10px'
+  });
 
-$sideBar.append($friendsOfDiv);
+  $contentContainer.append($tweetsDiv, $sideBar);
+  $page.append($contentContainer);
 
   // this variable represents a JQ object that contains a div with the class tweets. This div will be used to hold
   //all of the tweet elements.
