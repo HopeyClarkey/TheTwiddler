@@ -58,13 +58,13 @@ $(() => {
     border: ' 2px solid lavender', //adding barbie vibes
     cursor: 'pointer' // this changes it to a pointer
   });
-  $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit 
+  $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit
   // the tweet in the $writeNewTweet div
 
 //code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
 
 
-  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
+  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
     padding: '10px',
     marginLeft: '50px',
     marginTop: '10px',
@@ -107,8 +107,13 @@ $(() => {
     backgroundColor: 'lavender'
   });
   $sideBar.append($friendsOfDiv); //put that in the sidebar!
-  
-  const $hashTags = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
+
+  // how can I do this here? I need to call the global var 'users' and have them have a clickable username that will update another section-
+  //instead of the hashtags, I can do that in that space?
+  // I think I'd like to have the small 'friends bit' at the top, maybe page another page with hashtags, and then another part underneath
+  //that pages through based on what you are selecting at the time? Maybe default to it's own user's tweets?
+
+  const $hashTags = $('<div class="friends"></div>').css({ //this is below the friends div
     padding: '10px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
     boxSizing: 'border-box',
@@ -121,7 +126,7 @@ $(() => {
 
 
   const $contentContainer = $('<div id = "content-container"></div>').css({ // this overall holds my sidebar on one side, and my tweets div and sidebar, inside the page
-    display: 'flex',
+    display: 'flex', //insures that the content moves and resizes when the rest of the elements do.
   });
 
   $contentContainer.append($tweetsDiv, $sideBar);
@@ -136,14 +141,14 @@ $(() => {
 
 //A
 //Show the new user tweets somehow. You can show them automatically as they are created every 10 seconds, or create a button
-//that displays new tweets: The button should have an id of new-tweets-button. New Tweets should be added to the top of the 
-//list of tweets. 
+//that displays new tweets: The button should have an id of new-tweets-button. New Tweets should be added to the top of the
+//list of tweets.
 // All tweets in the streams.home array should be displayed. There is a container div that has the class tweets
 //that you can append the tweets to. Each tweet should hav ethe class tweet and should be appended to the tweets container.
 
 //B
 // Display the timestamp of when the tweets were created. This timestamp should reflect the ACTUAL date and time the tweets were
-//created, and not just be hardcoded. For example: April 24th, 2024, 3:15pm. The timestamps should be in its own tag with the 
+//created, and not just be hardcoded. For example: April 24th, 2024, 3:15pm. The timestamps should be in its own tag with the
 //class 'timestamp'
 
 //C
@@ -239,11 +244,11 @@ function addNewTweets(){
  Lets do some thinking here about what we need.
 
  We need to SEE all of these things:
-          A background, a title, and a header showing the title of the site. 
+          A background, a title, and a header showing the title of the site.
               - these are just sections I can make using JQuery
           a section that displays users the user follows (friends?)
               - this is an array, needs to be clickable to display tweets
           a section that displays all of the tweets that have ocurred that keeps updating
-          a place where the user can tweet themselves, with an input form? 
+          a place where the user can tweet themselves, with an input form?
 
 */
