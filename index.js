@@ -66,16 +66,20 @@ $(() => {
 
     $tweetSubmit.on('click', () => { //on the click of tweet submit
       let messageText = $tweetText.val().trim(); //takes the value of the text in the text box and trims any extra space around the message.
-        if (messageText === "") return; // if there is no message, do nothing.
-      let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
-        user: 'Me', //does this stay???
+        if (messageText === "") return;// if there is no message, do nothing.
+        if (window.visitor === (null || undefined)) { //if the window visitor is null or undefined
+          alert('You need to log in!'); //alert you need to log in
+          return; // if there is no user logged in, do nothing.
+      } let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
+        user: window.visitor, //does this stay???
         message: messageText,
         created_at: new Date()
       }
         let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
-        let $myUser = $(`<span class = "username"> @{newTweet.user}</span>`); //create user COME BACK TO THIS
+        let $myUser = $(`<span class = "username"> @${window.visitor}</span>`); //create user COME BACK TO THIS
         let $myMessage = $(`<span class ="message">: ${newTweet.message}</span>`); //this is the message from the input box
         let $myTimeStamp = $(`<span class = "timestamp"> ${newTweet.created_at.toString()}</span>`);// this is the time stamp ??? moment
+        let $myHumanFriendlyTime = $(`<span class= "time-posted-since">${moment(newTweet.created_at).fromNow()}</span>`);
 
         $newTweet.append($myUser, $myMessage, $myTimeStamp) //put myUser and myMessage, myTimeStamp onto newTweet
         $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
@@ -124,6 +128,7 @@ $(() => {
 
 //SIDEBAR STUFF
 
+//MAIN SECTION
   const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the
   // friends and the hashtags eventually? recent tweets, etc.
     position: 'fixed', //I want this sidebar to stay on the right
@@ -139,15 +144,89 @@ $(() => {
     backgroundColor: 'powderblue'
   });
 
+
+//Log In Information:
   const $logIn = $('<div class="friends"></div>').css({ 
-    padding: '10px',
+    padding: '5px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
+    height: '150',
     boxSizing: 'border-box',
     marginRight: '15px',
     marginLeft: '15px',
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
+  const $logInUser =  $('<input type="text" placeholder= "Enter username">').css({
+    top: '10px', //just a little room around it.
+    height: '50px',
+    marginTop: '5px',
+    fontSize: '22px',
+    padding: "2px",
+    backgroundColor: 'lightpink', //malibu blue
+    borderRadius: '8px', //round corners
+    border: ' 2px solid lavender', //tie together
+    width: '200px', //define size
+    zIndex: 10
+  });
+  const $logInButton = $('<button>Log In</button>').css({
+    top: '10px', //just a little room around it.
+    backgroundColor: 'lightpink', //malibu blue
+    borderRadius: '8px', //round corners
+    border: ' 2px solid lavender', //tie together
+    right: '5px', //tie together
+    width: '75',
+    marginRight: '15px',
+    marginLeft: '15px',
+    zIndex: 10
+  });
+    const $clearName = $('<button>Clear</button>').css({
+    top: '10px', //just a little room around it.
+    backgroundColor: 'lightpink', //malibu blue
+    borderRadius: '8px', //round corners
+    border: ' 2px solid lavender', //tie together
+    right: '5px',
+    width: '75',
+    marginRight: '15px',
+    marginLeft: '15px',
+    zIndex: 10
+  });
+
+  const $currentName = $('<div class="friends"></div>').css({
+    padding: '5px',
+    width: '250px)', //fullwidth minus sidebar plus margin of 60?
+    height: '50',
+    boxSizing: 'border-box',
+    marginRight: '15px',
+    marginLeft: '15px',
+    marginTop: '15px',
+    alignItems: 'fill',
+  });
+
+  $logIn.append($logInUser, $logInButton, $clearName); //add the username, and the two buttons 
+  $logIn.append($currentName); //put the current name here COME BACK TO THIS
+
+//button stuff:
+  window.vistor = null; //<<this is the default when someone visits
+  $logInButton.on('click', () =>{ // on the log in button click
+    const name = $logInUser.val().trim(); //going to be using these a lot, the value of the box, with any extra outside spaces removed
+    if (!name) { //if there is no name
+      alert("Username required!"); //tell the visitor to add one
+      return; //come back without anything
+    } //if there is
+    window.visitor = name; //this is the reset of the window visitor to the name!
+    alert(`Logged in as @${window.visitor}`);
+    $currentName.text(`Logged in as: ${window.visitor}`); //updates the log in title with name!
+  });
+
+  $clearName.on('click', () =>{ //on the click
+    window.visitor =null; //clear the window visitor
+    $logInUser.val(''); //this is so freaking useful clear the value
+    $currentName.text('Not Logged In'); //update to not logged in.
+  });
+
+
+
+
 
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
