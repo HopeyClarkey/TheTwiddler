@@ -101,24 +101,21 @@ $(() => {
 
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
-    padding: '10px',
-    margin: '10px',
-    borderRadius: '8px',
-    border: ' 2px solid powderblue',
-    width: '75%',
-    marginRight: '15px',
-    marginLeft: '15px',
-    marginTop: '15px',
-    backgroundColor: 'lightpink',
-    width: 'calc(100% - 270px)', 
+    padding: '10px', //padding
+    marginTop: '10px', //space from the tweet button
+    borderRadius: '8px', //rounded corners
+    border: ' 2px solid powderblue', //border color
+    backgroundColor: 'lightpink', //color
+    width: 'calc(100% - 270px)', // width
     boxSizing: 'border-box',
-    display: 'flex', //
-    alignItems: 'stretch'
+    display: 'flex', // this will have div resize with window movement.
+    alignItems: 'stretch' //this will have items resize inside
   });
 
   const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of 
   // just the tweets when I needed new ones. Added this so I can just go ahead and delete the tweets and not the object itself.
-    paddingTop: '20px' //I liked the way this looked best
+    paddingTop: '30px', //I liked the way this looked best
+    fontSize: '22px' //COME BACK TO THIS
   });
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
 
