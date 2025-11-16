@@ -11,7 +11,8 @@ $(() => {
     padding: '10px', // it's got a padding of 10px inside the header div
     textAlign: 'center', //all the text in here is going to align to center
     fontSize: '60px', //fontsize is specified,
-    fontWeight: 'bold', //can bold here
+    fontWeight: 'bold',
+    color: 'teal', //can bold here
     height: '100px', //how tall is my header?
     backgroundColor: 'lavender', //this is the background color
     borderRadius: '8px', //this rounds my corners!
@@ -161,7 +162,7 @@ $(() => {
     height: '50px',
     marginTop: '5px',
     fontSize: '22px',
-    padding: "2px",
+    textAlign: 'center',
     backgroundColor: 'lightpink', //malibu blue
     borderRadius: '8px', //round corners
     border: ' 2px solid lavender', //tie together
@@ -176,6 +177,7 @@ $(() => {
     right: '5px', //tie together
     width: '75',
     marginRight: '15px',
+    marginTop: '2.5px',
     marginLeft: '15px',
     zIndex: 10
   });
@@ -186,6 +188,7 @@ $(() => {
     border: ' 2px solid lavender', //tie together
     right: '5px',
     width: '75',
+    marginTop: '2.5px',
     marginRight: '15px',
     marginLeft: '15px',
     zIndex: 10
@@ -199,6 +202,7 @@ $(() => {
     marginRight: '15px',
     marginLeft: '15px',
     marginTop: '15px',
+    color: 'teal',
     alignItems: 'fill',
   });
 
