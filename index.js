@@ -65,9 +65,9 @@ $(() => {
       let messageText = $tweetText.val().trim(); //takes the value of the text in the text box and trims any extra space around the message.
         if (messageText === "") return; // if there is no message, do nothing.
       let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
-        user: 'Me' //does this stay???
-        message: messageText
-        created_at: new Date();
+        user: 'Me', //does this stay???
+        message: messageText,
+        created_at: new Date()
       }
         let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
         let $myUser = $(`<span class = "username"> @{myTweet.user}</span>`); //create user COME BACK TO THIS
