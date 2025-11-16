@@ -73,9 +73,9 @@ $(() => {
         created_at: new Date()
       }
         let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
-        let $myUser = $(`<span class = "username"> @{myTweet.user}</span>`); //create user COME BACK TO THIS
+        let $myUser = $(`<span class = "username"> @{newTweet.user}</span>`); //create user COME BACK TO THIS
         let $myMessage = $(`<span class ="message">: ${newTweet.message}</span>`); //this is the message from the input box
-        let $myTimeStamp = $(`<span class = "timestamp"> ${myTweet.created_at.toString()}</span>`);// this is the time stamp ??? moment
+        let $myTimeStamp = $(`<span class = "timestamp"> ${newTweet.created_at.toString()}</span>`);// this is the time stamp ??? moment
 
         $newTweet.append($myUser, $myMessage, $myTimeStamp) //put myUser and myMessage, myTimeStamp onto newTweet
         $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
@@ -237,6 +237,8 @@ const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</but
   borderRadius: '8px', //round corners
   border: ' 2px solid lavender', //tie together
   right: '5px',
+  marginRight: '15px',
+  marginLeft: '15px',
   zIndex: 10
 });
 $tweetsDiv.css({position: 'relative'});
