@@ -52,10 +52,20 @@ $(() => {
     fontSize: '22px', //size
     cursor: 'pointer' // this changes it to a pointer
   });
-  $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit 
+  $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit
   // the tweet in the $writeNewTweet div
 
-//code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
+    $tweetSubmit.on('click', () => { //on the click of tweet submit
+      let messageText = $tweetText.val().trim(); //takes the value of the text in the text box and trims any extra space around the message.
+        if (messageText === "") return; // if there is no message, do nothing.
+      let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
+        user: 'Me' 
+        message: messageText
+        created_at: new Date();
+      }
+        let $newTweet = $('<div> class = "tweet"></div>'); //create division for new tweet
+        let $myUser = $(`<></>`)
+    })
 
 
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the tweets, match the others
