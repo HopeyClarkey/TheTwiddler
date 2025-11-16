@@ -5,7 +5,8 @@ $(() => {
 
 
 
-  //create header
+//HEADER AND TWEET
+
    const $header = $('<header></header>').css({ // okay so this creates a header for my page
     padding: '10px', // it's got a padding of 10px inside the header div
     textAlign: 'center', //all the text in here is going to align to center
@@ -19,6 +20,7 @@ $(() => {
     marginRight: '270px', //my sidebar is 50 pixles, so this gives me a little room here.
 
   });
+
   $header.text('Twiddler!'); //fill header with words
   $page.prepend($header); //add header to the TOP of the page with Prepend
 
@@ -35,7 +37,7 @@ $(() => {
     width: 'calc(100% - 270px)', //fullwidth minus sidebar plus margin of 60?
     boxSizing: 'border-box', //okay I learned this when I was having trouble with the sidebar covering up the edges
     display: 'flex', //this creates a dynamic display of the div that will resize!
-    alignItems: 'stretch' //I want the text input boxes to show up on the right of this main box
+    alignItems: 'stretch' //I want the text input boxes to move with the box.
   })
 
 //create input text box
@@ -58,6 +60,7 @@ $(() => {
     border: ' 2px solid lavender', //adding barbie vibes
     cursor: 'pointer' // this changes it to a pointer
   });
+
   $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit
   // the tweet in the $writeNewTweet div
 
@@ -103,7 +106,14 @@ $(() => {
     borderRadius: '8px',
     border: ' 2px solid powderblue',
     width: '75%',
-    backgroundColor: 'lightpink'
+    marginRight: '15px',
+    marginLeft: '15px',
+    marginTop: '15px',
+    backgroundColor: 'lightpink',
+    width: 'calc(100% - 270px)', 
+    boxSizing: 'border-box',
+    display: 'flex', //
+    alignItems: 'stretch'
   });
 
   const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of 
@@ -111,6 +121,11 @@ $(() => {
     paddingTop: '20px' //I liked the way this looked best
   });
   $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
+
+
+
+
+//SIDEBAR STUFF
 
   const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the
   // friends and the hashtags eventually? recent tweets, etc.
@@ -127,6 +142,15 @@ $(() => {
     backgroundColor: 'powderblue'
   });
 
+  const $logIn = $('<div class="friends"></div>').css({ 
+    padding: '10px',
+    width: '250px)', //fullwidth minus sidebar plus margin of 60?
+    boxSizing: 'border-box',
+    marginRight: '15px',
+    marginLeft: '15px',
+    marginTop: '15px',
+    backgroundColor: 'lavender'
+  });
 
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
@@ -137,14 +161,14 @@ $(() => {
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
-  $sideBar.append($friendsOfDiv); //put that in the sidebar!
+
 
   // how can I do this here? I need to call the global var 'users' and have them have a clickable username that will update another section-
   //instead of the hashtags, I can do that in that space?
   // I think I'd like to have the small 'friends bit' at the top, maybe page another page with hashtags, and then another part underneath
   //that pages through based on what you are selecting at the time? Maybe default to it's own user's tweets?
 
-  const $hashTags = $('<div class="friends"></div>').css({ //this is below the friends div
+  const $otherSection = $('<div class="friends"></div>').css({ //this is below the friends div
     padding: '10px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
     boxSizing: 'border-box',
@@ -153,7 +177,7 @@ $(() => {
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
-  $sideBar.append($hashTags); //put that in the sidebar!
+  $sideBar.append($logIn,$friendsOfDiv,$otherSection); //put all of these sections in the sidebar!
 
 
   const $contentContainer = $('<div id = "content-container"></div>').css({ // this overall holds my sidebar on one side, and my tweets div and sidebar, inside the page
