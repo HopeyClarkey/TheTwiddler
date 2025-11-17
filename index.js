@@ -72,9 +72,9 @@ $(() => {
           alert('You need to log in!'); //alert you need to log in
           return; // if there is no user logged in, do nothing.
       } let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
-        user: window.visitor, //does this stay???
-        message: messageText,
-        created_at: new Date()
+          user: window.visitor, //does this stay???
+          message: messageText,
+          created_at: new Date()
       }
         let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
         let $myUser = $(`<span class = "username"> @${window.visitor}</span>`); //create user COME BACK TO THIS
@@ -82,9 +82,10 @@ $(() => {
         let $myTimeStamp = $(`<span class = "timestamp"> ${newTweet.created_at.toString()}</span>`);// this is the time stamp ??? moment
         let $myHumanFriendlyTime = $(`<span class= "time-posted-since">${moment(newTweet.created_at).fromNow()}</span>`);
 
-        $newTweet.append($myUser, $myMessage, $myTimeStamp) //put myUser and myMessage, myTimeStamp onto newTweet
-        $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
-        $tweetText.val(''); //clear the tweetbox value
+      $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime
+      ) //put myUser and myMessage, myTimeStamp onto newTweet
+      $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
+      $tweetText.val(''); //clear the tweetbox value
     })
 //code to new tweet will come here? Or below $tweetsDiv as that's where it inserts it?
    /* okay so what happens here- on tweet submit click, the text in the input box needs
@@ -331,10 +332,10 @@ $tweetsDiv.prepend($newTweetsButton);
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
       const $tweet = $('<div class="tweet"></div>');
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const createdAt = tweet.created_at; //creates a variable that would represent the time stamp COME BACK with moment???
-      const momentTimeAgo = moment(createdAt).fromNow(); //fighting with moment
+      const createdAt = tweet.created_at || new Date(); //creates a variable that would represent the time stamp COME BACK with moment???
+      const momentTimeAgo = moment(createdAt).fromNow() ; //fighting with moment
       const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp
-      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp">${momentTimeAgo}</span>`);
+      const $humanFriendlyTimeStamp = $(`<span class="time-posted-since">${momentTimeAgo}</span>`);
       const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
 
     $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp); //appends the user, the message, and the time stamp to the tweet
