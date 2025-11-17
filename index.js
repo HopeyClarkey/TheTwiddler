@@ -95,42 +95,61 @@ $(() => {
 //Show when the tweets were created in a human-friendly way (e.g. 10 minutes ago). You'll want to use a library to do this work for you.
 // a popular library is called 'Moment.js'. The human-friendly time should be in it's own tag with the class 'time-since-posted'
 
+//This has gotten super complicated. I've moved a lot around and tried a bunch of things and I am just throwing blocks of code at it now.
+// I understand that my tweet isn't making it to the test array.
+
+    function addTweetToHome(user, message){
+      const newTweet = {
+        user,
+        message,
+        created_at: new Date()
+      };
+      streams.home.push(newTweet);
+      return newTweet;
+    }
 
 
   $writeNewTweet.append($tweetText, $tweetSubmit) //just put the tweet text input box and the button to submit
   // the tweet in the $writeNewTweet div
 
-    $tweetSubmit.on('click', () => { //on the click of tweet submit
+  $tweetSubmit.on('click', () => { //on the click of tweet submit
 
-      let messageText = $tweetText.val().trim(); //takes the value of the text in the text box and trims any extra space around the message.
+//Text stuff
+        let messageText = $tweetText.val().trim(); //takes the value of the text in the text box and trims any extra space around the message.
+          if (messageText === "") return;// if there is no message, do nothing.
 
-        if (messageText === "") return;// if there is no message, do nothing.
-
+// Log in stuff
         if (!window.visitor) { //if the window visitor is null or undefined
           alert('You need to log in!'); //alert you need to log in
-          return; // if there is no user logged in, do nothing.
+          return;} // if there is no user logged in, do nothing.
+        let newTweet = addTweetToHome(window.visitor, messageText);
+        showTweets([newTweet, ...streams.home.filter((tweets ) => (tweet) !== newTweet)]); //okay takes the new tweet, spreads the home array,
+//then filters the home array to ensure that the new tweet does nto exist within it.
 
-      } let newTweet ={ //if there is a message, create newTweet, with user, messageText, and current date
-          user: window.visitor, //does this stay???
-          message: messageText,
-          created_at: new Date()
-      }
+/*  I am going to comment this part out and try to use the same info  with the "show tweets to make sure the home gets my new tweet
+// Actual new tweet OBJECT
+      } let newTweet = { //if there is a message, create newTweet, with user, messageText, and current date
+          user: window.visitor, //pulls from log in info
+          message: messageText, //pulls the message
+          created_at: new Date()} //creates a time stamp with the current time
+//JQ text to show the object
 
         let $newTweet = $('<div class="tweet"></div>'); //create division for new tweet
         let $myUser = $(`<span class="username"> @${window.visitor}</span>`); //create user
         let $myMessage = $(`<span class="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
 
-      //same thing that we did for other to do the
+      //same thing that we did for other to do the timestap
        // let createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at): new Date(); //creates variable for date
 
         let $myTimeStamp = $(`<span class="timestamp"> ${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
         let $myHumanFriendlyTime = $(`<span class="humanFriendlyTimeStamp"> ${moment(createdAt).fromNow()}</span>`);
       $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime) //put myUser and myMessage, myTimeStamp onto newTweet
       $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
+      */
+
+
       $tweetText.val(''); //clear the tweetbox value
-    })
-
-
+    });
 
 
 //SIDEBAR STUFF
