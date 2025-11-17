@@ -84,7 +84,7 @@ $(() => {
 
         if (messageText === "") return;// if there is no message, do nothing.
 
-        if (window.visitor === (null || undefined)) { //if the window visitor is null or undefined
+        if (!window.visitor) { //if the window visitor is null or undefined
           alert('You need to log in!'); //alert you need to log in
           return; // if there is no user logged in, do nothing.
 
@@ -93,9 +93,9 @@ $(() => {
           message: messageText,
           created_at: new Date()
       }
-        let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
-        let $myUser = $(`<span class = "username"> @${window.visitor}</span>`); //create user
-        let $myMessage = $(`<span class ="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
+        let $newTweet = $('<div class="tweet"></div>'); //create division for new tweet
+        let $myUser = $(`<span class="username"> @${window.visitor}</span>`); //create user
+        let $myMessage = $(`<span class="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
 
 //same thing that we did for other to do the
         let createdAt;
@@ -104,7 +104,7 @@ $(() => {
         } else {createdAt = new Date();}
 
 
-        let $myTimeStamp = $(`<span class = "timestamp"> ${moment(newTweet.created_at).format('MMMM Do YYYY, h:mm:ss a')}</span>`);// this is the time stamp ??? moment
+        let $myTimeStamp = $(`<span class="timestamp"> ${moment(newTweet.created_at).format('MMMM Do YYYY, h:mm:ss a')}</span>`);// this is the time stamp ??? moment
         let $myHumanFriendlyTime = $(`<span class= "time-posted-since">${moment(newTweet.created_at).fromNow()}</span>`);
 
       $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime
