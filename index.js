@@ -124,9 +124,6 @@ $(() => {
 
         let $myTimeStamp = $(`<span class="timestamp"> ${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
         let $myHumanFriendlyTime = $(`<span class="humanFriendlyTimeStamp"> ${moment(createdAt).fromNow()}</span>`);
-
-
-      streams.home.push(newTweet);
       $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime) //put myUser and myMessage, myTimeStamp onto newTweet
       $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
       $tweetText.val(''); //clear the tweetbox value
