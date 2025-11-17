@@ -77,8 +77,16 @@ $(() => {
           created_at: new Date()
       }
         let $newTweet = $('<div class = "tweet"></div>'); //create division for new tweet
-        let $myUser = $(`<span class = "username"> @${window.visitor}</span>`); //create user COME BACK TO THIS
+        let $myUser = $(`<span class = "username"> @${window.visitor}</span>`); //create user
         let $myMessage = $(`<span class ="message">: ${newTweet.message}</span>`); //this is the message from the input box
+
+//same thing that we did for other to do the
+        let createdAt;
+        if (newTweet && newTweet.created_at){
+          createdAt = newTweet.created_at;
+        } else {createdAt = new Date();}
+
+
         let $myTimeStamp = $(`<span class = "timestamp"> ${newTweet.created_at.toString()}</span>`);// this is the time stamp ??? moment
         let $myHumanFriendlyTime = $(`<span class= "time-posted-since">${moment(newTweet.created_at).fromNow()}</span>`);
 
@@ -211,7 +219,7 @@ $(() => {
   $logIn.append($currentName); //put the current name here COME BACK TO THIS
 
 //button stuff:
-  window.vistor = null; //<<this is the default when someone visits
+  window.visitor = null; //<<this is the default when someone visits
   $logInButton.on('click', () =>{ // on the log in button click
     const name = $logInUser.val().trim(); //going to be using these a lot, the value of the box, with any extra outside spaces removed
     if (!name) { //if there is no name
@@ -330,13 +338,21 @@ $tweetsDiv.prepend($newTweetsButton);
   function showTweets(tweetArray){
     $tweetsList.html('')//removes old tweets
     tweetArray.forEach((tweet) =>{ //loops through tweet Array
-      const $tweet = $('<div class="tweet"></div>');
+      if (!tweet || !tweet.user) return; // if the tweet is undefined, return with nothing.
+
+      const $tweet = $('<div class="tweet"></div>'); //creates a div for each tweet
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const createdAt = tweet.created_at || new Date(); //creates a variable that would represent the time stamp COME BACK with moment???
-      const momentTimeAgo = moment(createdAt).fromNow() ; //fighting with moment
+
+      let createdAt; //creates time representation
+        if (tweet && tweet.created_at){ //to try and pass tests, I am checking to see if the tweet & time exist
+          createdAt = tweet.created_at; //if they do, then createdAt because when they were created
+        } else {createdAt = new Date();} //if not, then it creates a new timestamp
+
+      const momentTimeAgo = moment(createdAt).fromNow() ; //converts with moment
       const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp
       const $humanFriendlyTimeStamp = $(`<span class="time-posted-since">${momentTimeAgo}</span>`);
-      const $message = $(`<span class="message">:${tweet.message}</span>`); //creates message itself.
+
+      const $message = $(`<span class="message">${tweet.message}</span>`); //creates message itself.
 
     $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp); //appends the user, the message, and the time stamp to the tweet
     $tweetsList.prepend($tweet); //appends the tweet to the tweetDiv
