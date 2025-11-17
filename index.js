@@ -123,7 +123,7 @@ $(() => {
           alert('You need to log in!'); //alert you need to log in
           return;} // if there is no user logged in, do nothing.
         let newTweet = addTweetToHome(window.visitor, messageText);
-        showTweets([newTweet, ...streams.home.filter((tweets ) => (tweet) !== newTweet)]); //okay takes the new tweet, spreads the home array,
+        showTweets([newTweet, ...streams.home.filter((tweet) => (tweet) !== newTweet)]); //okay takes the new tweet, spreads the home array,
 //then filters the home array to ensure that the new tweet does nto exist within it.
 
 /*  I am going to comment this part out and try to use the same info  with the "show tweets to make sure the home gets my new tweet
@@ -342,7 +342,7 @@ $tweetsDiv.prepend($newTweetsButton);
 
       const $tweet = $('<div class="tweet"></div>'); //creates a div for each tweet
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
-      const $message = $(`<span class="message"> ${tweet.message}</span>`); //creates message itself.
+      const $message = $(`<span class="message">${tweet.message}</span>`); //creates message itself.
 
       let createdAt = tweet.created_at instanceof Date ? new Date(tweet.created_at): new Date(); //creates variable for date
 
