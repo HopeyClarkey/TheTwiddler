@@ -1,11 +1,8 @@
 $(() => {
-  const $page = $('#all-contents');
-  // this variable represents a jQ OBJECT that contains the main content div with the ID all-Contents.
-  // This div will be used to hold all the content of the page.
+  const $page = $('#all-contents');// this variable represents a jQ OBJECT that contains the main content
+// div with the ID all-Contents. This div will be used to hold all the content of the page.
 
-
-
-//HEADER AND TWEET
+//HEADER AND TWEETS TIMELINE
 
    const $header = $('<header></header>').css({ // okay so this creates a header for my page
     padding: '10px', // it's got a padding of 10px inside the header div
@@ -13,18 +10,16 @@ $(() => {
     fontSize: '60px', //fontsize is specified,
     fontWeight: 'bold',
     color: 'teal', //can bold here
-    height: '100px', //how tall is my header?
+    height: '75px', //how tall is my header?
     backgroundColor: 'lavender', //this is the background color
     borderRadius: '8px', //this rounds my corners!
     border: ' 2px solid lightpink', //adding barbie vibes
     marginBottom: '10px', //this gives us space between other obejcts and the header
     marginRight: '270px', //my sidebar is 50 pixles, so this gives me a little room here.
-
   });
 
-  $header.text('Twiddler!'); //fill header with words
+  $header.text('Welcome to Twiddler!'); //fill header with words
   $page.prepend($header); //add header to the TOP of the page with Prepend
-
 
 //TWEETS TIMELINE
   const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
@@ -67,7 +62,9 @@ $(() => {
   const $tweetText = $('<input id="message-input" type="text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({ //input text for tweets
     flex: '1', //this means it will resize with the $writeNewText div
     padding: '10px', //padding
-    fontSize: '22px', //size
+    fontSize: '22px', //size\
+    margin: '5px',
+    height: '50px',
     backgroundColor: 'lavender', //this is the background color
     color: 'teal',
     borderRadius: '8px', //this rounds my corners!
@@ -77,8 +74,11 @@ $(() => {
 
   //create input button
   const $tweetSubmit = $('<input type= "submit" value = "Tweet">').css({
+    flex: '.1', //this means it will resize with the $writeNewText div
     padding: '10px', //padding
     fontSize: '22px', //size
+    margin: '5px',
+    height: '73px',
     backgroundColor: 'lightpink', //this is the background color
     borderRadius: '8px', //this rounds my corners!
     border: ' 2px solid lavender', //adding barbie vibes
@@ -197,7 +197,7 @@ $(() => {
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
-  const $logInUser =  $('<input id="username-input" type="text" placeholder="Enter username">').css({
+  const $logInUser =  $('<input id="username-input" type="text" placeholder="Enter Username">').css({
     top: '10px', //just a little room around it.
     height: '50px',
     marginTop: '5px',
@@ -207,7 +207,8 @@ $(() => {
     borderRadius: '8px', //round corners
     border: ' 2px solid lavender', //tie together
     width: '200px', //define size
-    zIndex: 10
+    zIndex: 10,
+    cursor: 'text',
   });
   const $logInButton = $('<button>Log In</button>').css({
     top: '10px', //just a little room around it.
@@ -219,7 +220,8 @@ $(() => {
     marginRight: '15px',
     marginTop: '2.5px',
     marginLeft: '15px',
-    zIndex: 10
+    zIndex: 10,
+    cursor: 'pointer'
   });
     const $clearName = $('<button>Clear</button>').css({
     top: '10px', //just a little room around it.
@@ -231,7 +233,8 @@ $(() => {
     marginTop: '2.5px',
     marginRight: '15px',
     marginLeft: '15px',
-    zIndex: 10
+    zIndex: 10,
+    cursor: 'pointer'
   });
 
   const $currentName = $('<div class="friends"></div>').css({
