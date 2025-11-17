@@ -350,7 +350,7 @@ $tweetsDiv.prepend($newTweetsButton);
       const momentTime = moment(createdAt).format('MMMM Do YYYY, h:mm:ss a'); //converts with moment actual time
 
       const $timeStamp = $(`<span class="timestamp"> ${momentTime}</span>`); //creates timestamp
-      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp"> ${momentTimeAgo}</span>`);
+      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimestamp"> ${momentTimeAgo}</span>`);
 
 
       console.log(tweet);
