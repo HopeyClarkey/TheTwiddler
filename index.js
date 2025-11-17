@@ -26,6 +26,28 @@ $(() => {
   $page.prepend($header); //add header to the TOP of the page with Prepend
 
 
+//TWEETS TIMELINE
+  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
+    padding: '10px', //padding
+    marginTop: '10px', //space from the tweet button
+    borderRadius: '8px', //rounded corners
+    border: ' 2px solid powderblue', //border color
+    backgroundColor: 'lightpink', //color
+    width: 'calc(100% - 270px)', // width
+    boxSizing: 'border-box',
+    display: 'flex', // this will have div resize with window movement.
+    alignItems: 'stretch' //this will have items resize inside
+  });
+
+  const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of
+  // just the tweets when I needed new ones. Added this so I can just go ahead and delete the tweets and not the object itself.
+    paddingTop: '30px', //I liked the way this looked best
+    fontSize: '22px' //COME BACK TO THIS
+  });
+  $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
+
+
+
 //Write New Tweets button comes next, just creating the section for it:
 
   const $writeNewTweet =$('<section id = "write-new-tweet"></section>').css({ //creates write new tweet section
@@ -98,42 +120,17 @@ $(() => {
         let $myMessage = $(`<span class="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
 
 //same thing that we did for other to do the
-        let createdAt;
-        if (newTweet && newTweet.created_at){
-          createdAt = newTweet.created_at;
-        } else {createdAt = new Date();}
+      let createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at): new Date(); //creates variable for date
+
+        let $myTimeStamp = $(`<span class="timestamp"> ${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
+        let $myHumanFriendlyTime = $(`<span class="humanFriendlyTimeStamp"> ${moment(createdAt).fromNow()}</span>`);
 
 
-        let $myTimeStamp = $(`<span class="timestamp"> ${moment(newTweet.created_at).format('MMMM Do YYYY, h:mm:ss a')}</span>`);// this is the time stamp ??? moment
-        let $myHumanFriendlyTime = $(`<span class= "time-posted-since">${moment(newTweet.created_at).fromNow()}</span>`);
-
-      $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime
-      ) //put myUser and myMessage, myTimeStamp onto newTweet
+      streams.home.push(newTweet);
+      $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime) //put myUser and myMessage, myTimeStamp onto newTweet
       $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
       $tweetText.val(''); //clear the tweetbox value
     })
-
-
-
-//TWEETS TIMELINE
-  const $tweetsDiv = $('<div id ="tweets" class="tweets"></div>').css({ //gotta create a box for the newTweets, match the others
-    padding: '10px', //padding
-    marginTop: '10px', //space from the tweet button
-    borderRadius: '8px', //rounded corners
-    border: ' 2px solid powderblue', //border color
-    backgroundColor: 'lightpink', //color
-    width: 'calc(100% - 270px)', // width
-    boxSizing: 'border-box',
-    display: 'flex', // this will have div resize with window movement.
-    alignItems: 'stretch' //this will have items resize inside
-  });
-
-  const $tweetsList =$('<div class = "tweet-list"></div>').css({  //I ran into trouble deleting the entire tweetDiv instead of 
-  // just the tweets when I needed new ones. Added this so I can just go ahead and delete the tweets and not the object itself.
-    paddingTop: '30px', //I liked the way this looked best
-    fontSize: '22px' //COME BACK TO THIS
-  });
-  $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets div
 
 
 
@@ -158,7 +155,7 @@ $(() => {
 
 
 //Log In Information:
-  const $logIn = $('<div class="friends"></div>').css({ 
+  const $logIn = $('<div class="friends"></div>').css({
     padding: '5px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
     height: '150',
@@ -328,18 +325,18 @@ $tweetsDiv.prepend($newTweetsButton);
 
       const $tweet = $('<div class="tweet"></div>'); //creates a div for each tweet
       const $user = $(`<span class="username">@${tweet.user}</span>`); //creates a user for ech tweet, with the class username @ template
+      const $message = $(`<span class="message"> ${tweet.message}</span>`); //creates message itself.
 
-      let createdAt; //creates time representation
-        if (tweet && tweet.created_at){ //to try and pass tests, I am checking to see if the tweet & time exist
-          createdAt = tweet.created_at; //if they do, then createdAt because when they were created
-        } else {createdAt = new Date();} //if not, then it creates a new timestamp
+      let createdAt = tweet.created_at instanceof Date ? new Date(tweet.created_at): new Date(); //creates variable for date
 
-      const momentTimeAgo = moment(createdAt).fromNow() ; //converts with moment
-      const $timeStamp = $(`<span class="timestamp">${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`); //creates timestamp
-      const $humanFriendlyTimeStamp = $(`<span class="time-posted-since">${momentTimeAgo}</span>`);
+      const momentTimeAgo = moment(createdAt).fromNow() ; //converts with moment how long ago
+      const momentTime = moment(createdAt).format('MMMM Do YYYY, h:mm:ss a'); //converts with moment actual time
 
-      const $message = $(`<span class="message">${tweet.message}</span>`); //creates message itself.
+      const $timeStamp = $(`<span class="timestamp"> ${momentTime}</span>`); //creates timestamp
+      const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimeStamp"> ${momentTimeAgo}</span>`);
 
+
+      console.log(tweet);
     $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp); //appends the user, the message, and the time stamp to the tweet
     $tweetsList.prepend($tweet); //appends the tweet to the tweetDiv
 
@@ -350,7 +347,7 @@ showTweets(streams.home); //calls the function we just made.
 
 
 //hook up the button to the function we just made:
-$newTweetsButton.on('click', ()=>{ //on the click, 
+$newTweetsButton.on('click', ()=>{ //on the click,
   showTweets(streams.home); //refresh the tweets
 })
 
