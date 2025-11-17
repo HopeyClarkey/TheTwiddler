@@ -69,6 +69,7 @@ $(() => {
     padding: '10px', //padding
     fontSize: '22px', //size
     backgroundColor: 'lavender', //this is the background color
+    color: 'teal',
     borderRadius: '8px', //this rounds my corners!
     border: ' 2px solid lightpink', //adding barbie vibes
     cursor: 'text' //this changes it to the text input!
@@ -97,14 +98,14 @@ $(() => {
 
 //This has gotten super complicated. I've moved a lot around and tried a bunch of things and I am just throwing blocks of code at it now.
 // I understand that my tweet isn't making it to the test array.
-
-    function addTweetToHome(user, message){
-      const newTweet = {
+//this function adds the tweet to the home array to pass the tests
+    function addTweetToHome(user, message){ //takes in a user and message
+      const newTweet = { //creates new tweet object
         user,
         message,
-        created_at: new Date()
+        created_at: new Date() // timestamps it
       };
-      streams.home.push(newTweet);
+      streams.home.push(newTweet); //pushes to the home array
       return newTweet;
     }
 
@@ -122,9 +123,24 @@ $(() => {
         if (!window.visitor) { //if the window visitor is null or undefined
           alert('You need to log in!'); //alert you need to log in
           return;} // if there is no user logged in, do nothing.
-        let newTweet = addTweetToHome(window.visitor, messageText);
+
+        let newTweet = addTweetToHome(window.visitor, messageText); // calls the home push from the object & creates the object
+
         showTweets([newTweet, ...streams.home.filter((tweet) => (tweet) !== newTweet)]); //okay takes the new tweet, spreads the home array,
 //then filters the home array to ensure that the new tweet does nto exist within it.
+
+//create tweet itself to show on page:
+        const $tweet = $('<div class="tweet"></div>');
+        const $user = $(`<span class="username">@${newTweet.user}</span>`);
+        const $message = $(`<span class="message">${newTweet.message}</span>`);
+
+        const createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at) : new Date();
+        const $timeStamp = $(`<span class="timestamp">${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
+        const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimestamp">${moment(createdAt).fromNow()}</span>`);
+
+        $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp);
+        $tweetsList.prepend($tweet); //put newtweet to top of tweet list 
+
 
 /*  I am going to comment this part out and try to use the same info  with the "show tweets to make sure the home gets my new tweet
 // Actual new tweet OBJECT
@@ -146,8 +162,6 @@ $(() => {
       $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime) //put myUser and myMessage, myTimeStamp onto newTweet
       $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
       */
-
-
       $tweetText.val(''); //clear the tweetbox value
     });
 
