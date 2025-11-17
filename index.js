@@ -64,7 +64,7 @@ $(() => {
   })
 
 //create input text box
-  const $tweetText = $('<input type = "text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({ //input text for tweets
+  const $tweetText = $('<input id="message-input" type="text" placeholder="Give us the Twiddle!" maxlength="280"/>').css({ //input text for tweets
     flex: '1', //this means it will resize with the $writeNewText div
     padding: '10px', //padding
     fontSize: '22px', //size
@@ -76,7 +76,7 @@ $(() => {
   });
 
   //create input button
-  const $tweetSubmit = $('<button type= "submit">Tweet</button>').css({
+  const $tweetSubmit = $('<input type= "submit" value = "Tweet">').css({
     padding: '10px', //padding
     fontSize: '22px', //size
     backgroundColor: 'lightpink', //this is the background color
@@ -121,13 +121,14 @@ $(() => {
 
 // Log in stuff
         if (!window.visitor) { //if the window visitor is null or undefined
-          alert('You need to log in!'); //alert you need to log in
-          return;} // if there is no user logged in, do nothing.
-
+          const inputName = $('#username-input').val().trim(); //check for value from input name
+          if (!inputName) { // if input name is nullish
+            alert('You need to log in!'); //alert you need to log in
+            return;
+          } // if there is no user logged in, do nothing.
+          window.visitor = inputName; //set to input name
+        }
         let newTweet = addTweetToHome(window.visitor, messageText); // calls the home push from the object & creates the object
-
-        showTweets([newTweet, ...streams.home.filter((tweet) => (tweet) !== newTweet)]); //okay takes the new tweet, spreads the home array,
-//then filters the home array to ensure that the new tweet does nto exist within it.
 
 //create tweet itself to show on page:
         const $tweet = $('<div class="tweet"></div>');
@@ -139,7 +140,7 @@ $(() => {
         const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimestamp">${moment(createdAt).fromNow()}</span>`);
 
         $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp);
-        $tweetsList.prepend($tweet); //put newtweet to top of tweet list 
+        $tweetsList.prepend($tweet); //put newtweet to top of tweet list
 
 
 /*  I am going to comment this part out and try to use the same info  with the "show tweets to make sure the home gets my new tweet
@@ -196,7 +197,7 @@ $(() => {
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
-  const $logInUser =  $('<input type="text" placeholder= "Enter username">').css({
+  const $logInUser =  $('<input id="username-input" type="text" placeholder="Enter username">').css({
     top: '10px', //just a little room around it.
     height: '50px',
     marginTop: '5px',
