@@ -349,7 +349,7 @@ $tweetsDiv.prepend($newTweetsButton);
         } else {createdAt = new Date();} //if not, then it creates a new timestamp
 
       const momentTimeAgo = moment(createdAt).fromNow() ; //converts with moment
-      const $timeStamp = $(`<span class="timestamp">${createdAt.toString()}</span>`); //creates timestamp
+      const $timeStamp = $(`<span class="timestamp">${moment(createdAt).format('MMM Do YYYY, h:mm:ss a')}</span>`); //creates timestamp
       const $humanFriendlyTimeStamp = $(`<span class="time-posted-since">${momentTimeAgo}</span>`);
 
       const $message = $(`<span class="message">${tweet.message}</span>`); //creates message itself.
