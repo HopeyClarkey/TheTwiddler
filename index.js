@@ -115,12 +115,13 @@ $(() => {
           message: messageText,
           created_at: new Date()
       }
+
         let $newTweet = $('<div class="tweet"></div>'); //create division for new tweet
         let $myUser = $(`<span class="username"> @${window.visitor}</span>`); //create user
         let $myMessage = $(`<span class="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
 
-//same thing that we did for other to do the
-      let createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at): new Date(); //creates variable for date
+      //same thing that we did for other to do the
+       // let createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at): new Date(); //creates variable for date
 
         let $myTimeStamp = $(`<span class="timestamp"> ${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
         let $myHumanFriendlyTime = $(`<span class="humanFriendlyTimeStamp"> ${moment(createdAt).fromNow()}</span>`);
