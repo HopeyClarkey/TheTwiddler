@@ -307,13 +307,29 @@ $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp); //appends t
 $tweetsList.prepend($tweet); });//appends the tweet to the tweetDiv
   };
 
+// going to change the tweetslist based on what user we are looking at!
+  let filteredUser = null;
+
+$tweetsList.on('click', '.username', function() { //when we click the username
+  const username =$(this).text().substring(1);
+  filteredUser = username; //make the username a filtered user variable
+  if (streams.users[username]) { // if there is a username in the streams array that matches,
+    showTweets(streams.users[username]);} // show the tweets that belong to that user
+  $newTweetsButton.text('Get Back Home'); //flip the button so that you can get back home.
+});
 
 showTweets(streams.home); //calls the function we just made.
 
-
-//hook up the button to the function we just made:
 $newTweetsButton.on('click', ()=>{ //on the click,
-  showTweets(streams.home); //refresh the tweets
+  if (filteredUser) { //if this is currently nullish,
+    filteredUser = null; //reset to null
+    showTweets(streams.home); //show 
+    $newTweetsButton.text('Show New Tweets!');
+  } else {showTweets(streams.home); }
+});
+
+$tweetsList.on('mouseenter', '.username', function(){
+  $(this).css('cursor', 'pointer');
 })
 
 // put the add tweet to page logic into a function
