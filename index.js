@@ -6,11 +6,12 @@ $(() => {
 //HEADER AND TWEETS TIMELINE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    const $header = $('<header></header>').css({ // okay so this creates a header for my page
+    flex: '1',
     padding: '10px', // it's got a padding of 10px inside the header div
     textAlign: 'center', //all the text in here is going to align to center
     fontSize: '60px', //fontsize is specified,
     fontWeight: 'bold',
-    color: 'teal', //can bold here
+    color: 'teal',
     height: '75px', //how tall is my header?
     backgroundColor: 'lavender', //this is the background color
     borderRadius: '8px', //this rounds my corners!
@@ -18,7 +19,7 @@ $(() => {
     marginBottom: '10px', //this gives us space between other obejcts and the header
     marginRight: '270px', });//my sidebar is 50 pixles, so this gives me a little room here.
 
-$header.text('Welcome to Twiddler!'); //fill header with words
+$header.text('The Twiddler!'); //fill header with words
 $page.prepend($header); //add header to the TOP of the page with Prepend
 
 //TWEETS TIMELINE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,6 +29,7 @@ $page.prepend($header); //add header to the TOP of the page with Prepend
     borderRadius: '8px', //rounded corners
     border: ' 2px solid powderblue', //border color
     backgroundColor: 'lightpink', //color
+    color: 'white', //color
     width: 'calc(100% - 270px)', // width
     boxSizing: 'border-box',
     display: 'flex', // this will have div resize with window movement.
@@ -124,6 +126,8 @@ $tweetsList.prepend($tweet); //put newtweet to top of tweet list
 $tweetText.val(''); //clear the tweetbox value
   });
 
+
+
 //SECTION TWO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //SIDEBAR STUFF~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //MAIN SECTION
@@ -181,7 +185,7 @@ $tweetText.val(''); //clear the tweetbox value
     zIndex: 10,
     cursor: 'pointer'});
 
-    const $clearName = $('<button>Clear</button>').css({
+  const $clearName = $('<button>Clear</button>').css({
     top: '10px', //just a little room around it.
     backgroundColor: 'lightpink', //malibu blue
     borderRadius: '8px', //round corners
@@ -273,7 +277,6 @@ $page.append($contentContainer)
 //SECTION THREE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // MORE FUNCTIONALITY IN TWEETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 //create new tweets button
   const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({
   //okay so this creates the $jQ that creates the new button
@@ -323,7 +326,7 @@ showTweets(streams.home); //calls the function we just made.
 $newTweetsButton.on('click', ()=>{ //on the click,
   if (filteredUser) { //if this is currently nullish,
     filteredUser = null; //reset to null
-    showTweets(streams.home); //show 
+    showTweets(streams.home); //show
     $newTweetsButton.text('Show New Tweets!');
   } else {showTweets(streams.home); }
 });
