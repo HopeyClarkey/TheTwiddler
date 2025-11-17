@@ -85,19 +85,6 @@ $(() => {
     cursor: 'pointer' // this changes it to a pointer
   });
 
-
-//E
-//Allow the user to tweet(this is going to require you to understand more about the 'write tweet' function in the data generator.js)
-//B
-// Display the timestamp of when the tweets were created. This timestamp should reflect the ACTUAL date and time the tweets were
-//created, and not just be hardcoded. For example: April 24th, 2024, 3:15pm. The timestamps should be in its own tag with the
-//class 'timestamp'
-//D
-//Show when the tweets were created in a human-friendly way (e.g. 10 minutes ago). You'll want to use a library to do this work for you.
-// a popular library is called 'Moment.js'. The human-friendly time should be in it's own tag with the class 'time-since-posted'
-
-//This has gotten super complicated. I've moved a lot around and tried a bunch of things and I am just throwing blocks of code at it now.
-// I understand that my tweet isn't making it to the test array.
 //this function adds the tweet to the home array to pass the tests
     function addTweetToHome(user, message){ //takes in a user and message
       const newTweet = { //creates new tweet object
@@ -172,6 +159,7 @@ $(() => {
     marginTop: '15px',
     backgroundColor: 'lavender'
   });
+//text for the username
   const $logInUser =  $('<input id="username-input" type="text" placeholder="Enter Username">').css({
     top: '10px', //just a little room around it.
     height: '50px',
@@ -185,6 +173,8 @@ $(() => {
     zIndex: 10,
     cursor: 'text',
   });
+
+//log in and clear buttons
   const $logInButton = $('<button>Log In</button>').css({
     top: '10px', //just a little room around it.
     backgroundColor: 'lightpink', //malibu blue
@@ -212,10 +202,10 @@ $(() => {
     zIndex: 10,
     cursor: 'pointer'
   });
-
-  const $currentName = $('<div class="friends"></div>').css({
+//shows who is logged in
+  const $currentName = $('<div class="current-name"></div>').css({
     padding: '5px',
-    width: '250px)', //fullwidth minus sidebar plus margin of 60?
+    width: '250px)',
     height: '50',
     boxSizing: 'border-box',
     marginRight: '15px',
@@ -225,11 +215,12 @@ $(() => {
     alignItems: 'fill',
   });
 
-  $logIn.append($logInUser, $logInButton, $clearName); //add the username, and the two buttons 
-  $logIn.append($currentName); //put the current name here COME BACK TO THIS
+  $logIn.append($logInUser, $logInButton, $clearName); //add the username, and the two buttons
+  $logIn.append($currentName); //put the current name here C
 
-//button stuff:
+//button stuff to make this all work:
   window.visitor = null; //<<this is the default when someone visits
+
   $logInButton.on('click', () =>{ // on the log in button click
     const name = $logInUser.val().trim(); //going to be using these a lot, the value of the box, with any extra outside spaces removed
     if (!name) { //if there is no name
@@ -237,20 +228,17 @@ $(() => {
       return; //come back without anything
     } //if there is
     window.visitor = name; //this is the reset of the window visitor to the name!
-    alert(`Logged in as @${window.visitor}`);
+      alert(`Logged in as @${window.visitor}`);
     $currentName.text(`Logged in as: ${window.visitor}`); //updates the log in title with name!
   });
 
-  $clearName.on('click', () =>{ //on the click
+  $clearName.on('click', () =>{ //on the clear button click
     window.visitor =null; //clear the window visitor
     $logInUser.val(''); //this is so freaking useful clear the value
     $currentName.text('Not Logged In'); //update to not logged in.
   });
 
-
-
-
-
+//COME BACK TO THIS
   const $friendsOfDiv = $('<div class="friends"></div>').css({ //this is my friends div where my friends will eventually show up.
     padding: '10px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
@@ -261,9 +249,6 @@ $(() => {
     backgroundColor: 'lavender'
   });
 
-
-  // how can I do this here? I need to call the global var 'users' and have them have a clickable username that will update another section-
-  //instead of the hashtags, I can do that in that space?
   // I think I'd like to have the small 'friends bit' at the top, maybe page another page with hashtags, and then another part underneath
   //that pages through based on what you are selecting at the time? Maybe default to it's own user's tweets?
 
@@ -287,14 +272,6 @@ $(() => {
   $page.append($writeNewTweet);
   $page.append($contentContainer)
 
-  // this variable represents a JQ object that contains a div with the class tweets. This div will be used to hold
-  //all of the tweet elements.
-//I want to make this look different, I thinK I can do that by just adding the css to the actual creation
-
-//BARE MINIMUM REQUIREMENTS:
-
-
-
 //C
 // allow the user to click on any username to see that users timeline. The user should be able to get back to the home timeline
 //somehow. The username should be in it's own tag with the class 'username'
@@ -305,9 +282,8 @@ $(() => {
 //3- allow the user to click on a hashtag to see all the tweets with that hashtag in it.
 
 
-
 //create new tweets button
-const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({ 
+const $newTweetsButton = $('<button id="new-tweets-button">Show New Tweets!</button>').css({
   //okay so this creates the $jQ that creates the new button
   position: 'absolute', //this means it wont move around the page
   top: '10px', //just a little room around it.
