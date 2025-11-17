@@ -126,9 +126,8 @@ $(() => {
             alert('You need to log in!'); //alert you need to log in
             return;
           } // if there is no user logged in, do nothing.
-          window.visitor = inputName; //set to input name
-        }
-        let newTweet = addTweetToHome(window.visitor, messageText); // calls the home push from the object & creates the object
+        window.visitor = inputName; //set to input name
+        } let newTweet = addTweetToHome(window.visitor, messageText); // calls the home push from the object & creates the object
 
 //create tweet itself to show on page:
         const $tweet = $('<div class="tweet"></div>');
@@ -139,44 +138,19 @@ $(() => {
         const $timeStamp = $(`<span class="timestamp">${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
         const $humanFriendlyTimeStamp = $(`<span class="humanFriendlyTimestamp">${moment(createdAt).fromNow()}</span>`);
 
-        $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp);
-        $tweetsList.prepend($tweet); //put newtweet to top of tweet list
-
-
-/*  I am going to comment this part out and try to use the same info  with the "show tweets to make sure the home gets my new tweet
-// Actual new tweet OBJECT
-      } let newTweet = { //if there is a message, create newTweet, with user, messageText, and current date
-          user: window.visitor, //pulls from log in info
-          message: messageText, //pulls the message
-          created_at: new Date()} //creates a time stamp with the current time
-//JQ text to show the object
-
-        let $newTweet = $('<div class="tweet"></div>'); //create division for new tweet
-        let $myUser = $(`<span class="username"> @${window.visitor}</span>`); //create user
-        let $myMessage = $(`<span class="message">: ${newTweet.message}</span>`); //this is the actual message from the input box
-
-      //same thing that we did for other to do the timestap
-       // let createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at): new Date(); //creates variable for date
-
-        let $myTimeStamp = $(`<span class="timestamp"> ${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
-        let $myHumanFriendlyTime = $(`<span class="humanFriendlyTimeStamp"> ${moment(createdAt).fromNow()}</span>`);
-      $newTweet.append($myUser, $myMessage, $myTimeStamp, $myHumanFriendlyTime) //put myUser and myMessage, myTimeStamp onto newTweet
-      $tweetsList.prepend($newTweet); //put newtweet to top of tweet list
-      */
-      $tweetText.val(''); //clear the tweetbox value
+  $tweet.append($user, $message, $timeStamp, $humanFriendlyTimeStamp);
+  $tweetsList.prepend($tweet); //put newtweet to top of tweet list
+  $tweetText.val(''); //clear the tweetbox value
     });
 
-
 //SIDEBAR STUFF
-
 //MAIN SECTION
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show the
-  // friends and the hashtags eventually? recent tweets, etc.
+  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show things, log in, etc
     position: 'fixed', //I want this sidebar to stay on the right
-    marginLeft: '10px',
+    marginLeft: '10px', 
     padding: '10px',
-    right: '0',
-    top: '0',
+    right: '0', //sticks all the way to the left
+    top: '0', //sticks allthe way to the top
     height: '100vh',  //this is viewheight, so the entire screen
     width: '250px', //define size
     border: ' 2px solid lavender', // tie my design
@@ -191,6 +165,7 @@ $(() => {
     padding: '5px',
     width: '250px)', //fullwidth minus sidebar plus margin of 60?
     height: '150',
+    border: ' 2px solid lightpink',
     boxSizing: 'border-box',
     marginRight: '15px',
     marginLeft: '15px',
@@ -205,7 +180,7 @@ $(() => {
     textAlign: 'center',
     backgroundColor: 'lightpink', //malibu blue
     borderRadius: '8px', //round corners
-    border: ' 2px solid lavender', //tie together
+    border: ' 2px solid powderblue',
     width: '200px', //define size
     zIndex: 10,
     cursor: 'text',
@@ -216,7 +191,8 @@ $(() => {
     borderRadius: '8px', //round corners
     border: ' 2px solid lavender', //tie together
     right: '5px', //tie together
-    width: '75',
+    width: '70',
+    border: ' 2px solid powderblue',
     marginRight: '15px',
     marginTop: '2.5px',
     marginLeft: '15px',
@@ -227,9 +203,9 @@ $(() => {
     top: '10px', //just a little room around it.
     backgroundColor: 'lightpink', //malibu blue
     borderRadius: '8px', //round corners
-    border: ' 2px solid lavender', //tie together
+    border: ' 2px solid powderblue',
     right: '5px',
-    width: '75',
+    width: '70',
     marginTop: '2.5px',
     marginRight: '15px',
     marginLeft: '15px',
