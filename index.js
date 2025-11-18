@@ -89,7 +89,7 @@ $tweetsDiv.append($tweetsList); //all right, popping that list into the tweets d
         message,
         created_at: new Date() // timestamps it
       };
-      streams.home.push(newTweet); //pushes to the home array <<NOT SURE IF WORKING CORRECTLY
+      streams.home.push(newTweet); //pushes to the home array
       return newTweet;
     }
 
@@ -131,16 +131,14 @@ $tweetText.val(''); //clear the tweetbox value
 //SECTION TWO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //SIDEBAR STUFF~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //MAIN SECTION
-  const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show things, log in, etc
-    position: 'sticky', //I want this sidebar to stay on the right
+ const $sideBar = $('<div id ="sidebar" class ="sidebar"></div>').css({ //okay I wanted a sidebar where I can show things, log in, etc
+    position: 'fixed', //I want this sidebar to stay on the right
+    marginLeft: '10px', 
+    padding: '10px',
+    right: '0', //sticks all the way to the left
     top: '0', //sticks allthe way to the top
-    right: '0', //sticks all the way to the right
-    height: '100vh',  //this is view height, so the entire screen
-    width: '20%', // width << COME BACK TO THIS, I don't understand what this is doing yet?
-    color: 'teal',
-    boxSizing: 'border-box',
-    display: 'flex', // this will have div resize with window movement.
-    alignItems: 'stretch',
+    height: '100vh',  //this is viewheight, so the entire screen
+    width: '250px', //define size
     border: ' 2px solid lavender', // tie my design
     overflowY: 'auto', //this means it will overlay things- can cause issues but I wanted it to stay where it is no matter
     // what else is on the page.
@@ -187,7 +185,7 @@ $tweetText.val(''); //clear the tweetbox value
     zIndex: 10,
     cursor: 'pointer'});
 
-  const $clearName = $('<button>Clear</button>').css({
+    const $clearName = $('<button>Clear</button>').css({
     top: '10px', //just a little room around it.
     backgroundColor: 'lightpink', //malibu blue
     borderRadius: '8px', //round corners
@@ -202,7 +200,6 @@ $tweetText.val(''); //clear the tweetbox value
 
 //shows who is logged in
   const $currentName = $('<div class="current-name"></div>').css({
-    flex: 1,
     padding: '5px',
     width: '250px)',
     height: '50',
@@ -211,8 +208,8 @@ $tweetText.val(''); //clear the tweetbox value
     marginLeft: '15px',
     marginTop: '15px',
     color: 'teal',
-    fontSize: '10',
-    alignItems: 'stretch'});
+    alignItems: 'fill',});
+
 
 $logIn.append($logInUser, $logInButton, $clearName); //add the username, and the two buttons
 $logIn.append($currentName); //put the current name here C
@@ -263,11 +260,11 @@ $clearName.on('click', () =>{ //on the clear button click
 $sideBar.append($logIn,$friendsOfDiv,$otherSection); //put all of these sections in the sidebar!
   const $contentContainer = $('<div id = "content-container"></div>').css({ // this overall holds my sidebar on one side, and my tweets div and sidebar
     display: 'flex', //insures that the content moves and resizes when the rest of the elements do.
-  }); //is this where my sidebar settings need togo?
+  });
 
 $contentContainer.append($tweetsDiv, $sideBar);
 $page.append($writeNewTweet);
-$page.append($contentContainer);
+$page.append($contentContainer)
 
 //C
 // allow the user to click on any username to see that users timeline. The user should be able to get back to the home timeline
