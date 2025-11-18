@@ -115,7 +115,7 @@ $tweetSubmit.on('click', () => { //on the click of tweet submit
 //create tweet itself to show on page:
         const $tweet = $('<div class="tweet"></div>');
         const $user = $(`<span class="username">@${newTweet.user}</span>`);
-        const $message = $(`<span class="message">${newTweet.message}</span>`);
+        const $message = $(`<span class="message"> ${newTweet.message}</span>`);
 
         const createdAt = newTweet.created_at instanceof Date ? new Date(newTweet.created_at) : new Date();
         const $timeStamp = $(`<span class="timestamp">${moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>`);
